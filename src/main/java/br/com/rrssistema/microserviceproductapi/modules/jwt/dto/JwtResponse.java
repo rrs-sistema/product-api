@@ -15,6 +15,7 @@ public class JwtResponse {
     private Integer id;
     private String name;
     private String email;
+	private boolean admin;
 
     public static JwtResponse getUser(Claims jwtClaims) {
         try {
