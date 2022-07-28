@@ -10,6 +10,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -19,10 +20,14 @@ import java.util.List;
 @AllArgsConstructor
 public class ProductSalesResponse {
 
-    private  Integer id;
-    private  String name;
+    private Integer id;
+    private String name;
+    private String description;
     @JsonProperty("quantity_available")
     private Integer quantityAvailable;
+    private BigDecimal price;
+    @JsonProperty("img_url")
+    private String imgUrl;
     @JsonProperty("created_at")
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime createdAt;
@@ -35,7 +40,10 @@ public class ProductSalesResponse {
                 .builder()
                 .id(product.getId())
                 .name(product.getName())
+                .description(product.getDescription())
                 .quantityAvailable(product.getQuantityAvailable())
+                .price(product.getPrice())
+                .imgUrl(product.getImgUrl())
                 .createdAt(product.getCreatedAt())
                 .supplier(SupplierResponse.of(product.getSupplier()))
                 .category(CategoryResponse.of(product.getCategory()))

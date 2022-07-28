@@ -11,6 +11,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 public class MicroserviceProductApiApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(MicroserviceProductApiApplication.class, args);
 	}
 
