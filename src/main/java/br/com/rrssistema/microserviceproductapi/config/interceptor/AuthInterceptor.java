@@ -2,6 +2,7 @@ package br.com.rrssistema.microserviceproductapi.config.interceptor;
 
 import br.com.rrssistema.microserviceproductapi.config.exception.ValidationException;
 import br.com.rrssistema.microserviceproductapi.modules.jwt.service.JwtService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -14,6 +15,9 @@ import java.util.UUID;
 
 import static org.springframework.util.ObjectUtils.isEmpty;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class AuthInterceptor implements HandlerInterceptor {
 
     private static final String AUTHORIZATION = "Authorization";
@@ -42,9 +46,11 @@ public class AuthInterceptor implements HandlerInterceptor {
     }
 
     private boolean isPublicEndpoint(HttpServletRequest request) {
+        log.info("VERIFICANDO ENDPOINTS PUBLICO: " + request.getRequestURI());
+
         return Arrays.stream(PublicEndPoints.values())
             .anyMatch(publicEndPoint ->
-                request.getRequestURI().equals(publicEndPoint.getPublicEndPoint()));
+                request.getRequestURI().contains(publicEndPoint.getPublicEndPoint()));
     }
 
     private boolean isOptions(HttpServletRequest request) {
