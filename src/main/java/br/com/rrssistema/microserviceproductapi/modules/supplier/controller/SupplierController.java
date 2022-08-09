@@ -41,6 +41,11 @@ public class SupplierController {
         return supplierService.findByIdResponse(id);
     }
 
+    @GetMapping("/one/{id}")
+    public SupplierResponse findByOne(@PathVariable Integer id) {
+        return supplierService.findByIdResponse(id);
+    }
+
     @GetMapping("/name/{name}")
     public List<SupplierResponse> findByName(@PathVariable String name) {
         return supplierService.findByName(name);

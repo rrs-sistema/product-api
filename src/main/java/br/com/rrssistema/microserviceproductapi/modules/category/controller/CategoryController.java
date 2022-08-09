@@ -42,6 +42,11 @@ public class CategoryController {
         return categoryService.findByIdResponse(id);
     }
 
+    @GetMapping("/one/{id}")
+    public CategoryResponse findByOne(@PathVariable Integer id) {
+        return categoryService.findByIdResponse(id);
+    }
+
     @GetMapping("/description/{description}")
     public List<CategoryResponse> findByDescription(@PathVariable String description) {
         return categoryService.findByDescription(description);
