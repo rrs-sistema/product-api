@@ -38,7 +38,7 @@ public class ProductController {
         return productService.findByAll();
     }
 
-    @GetMapping("{all")
+    @GetMapping("/all")
     public List<ProductResponse> getAll() {
         return productService.findByAll();
     }
