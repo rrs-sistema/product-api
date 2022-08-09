@@ -33,7 +33,6 @@ public class ProductController {
         return productService.delete(id);
     }
 
-    @GetMapping
     public List<ProductResponse> findAll() {
         return productService.findByAll();
     }
