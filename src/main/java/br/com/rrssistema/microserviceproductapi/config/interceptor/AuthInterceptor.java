@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.util.Arrays;
 import java.util.UUID;
+import java.util.regex.Pattern;
 
 import static org.springframework.util.ObjectUtils.isEmpty;
 
@@ -50,7 +51,12 @@ public class AuthInterceptor implements HandlerInterceptor {
 
         return Arrays.stream(PublicEndPoints.values())
             .anyMatch(publicEndPoint ->
-                request.getRequestURI().contains(publicEndPoint.getPublicEndPoint()));
+                    match(publicEndPoint.getPublicEndPoint(), request.getRequestURI()));
+    }
+
+    private static boolean match(String publicEndpoint, String requestEndpoint) {
+        var pattern = Pattern.compile(publicEndpoint);
+        return pattern.matcher(requestEndpoint).find();
     }
 
     private boolean isOptions(HttpServletRequest request) {
