@@ -8,10 +8,14 @@ import lombok.Getter;
 public enum PublicEndPoints {
 
     FIND_PRODUCT_ALL("/api/product"),
-    FIND_PRODUCT_ID("/api/product/one"),
-    FIND_PRODUCT_NAME("/api/product/name"),
-    FIND_PRODUCT_CATEGORY("/api/product/category"),
-    FIND_PRODUCT_SUPPLIER("/api/product/supplier"),
+    FIND_PRODUCT_ONE("/api/product/one/"),
+    FIND_PRODUCT_ONE_ALL("/api/product/one/*"),
+    FIND_PRODUCT_NAME("/api/product/name/"),
+    FIND_PRODUCT_NAME_ALL("/api/product/name/*"),
+    FIND_PRODUCT_CATEGORY("/api/product/category/"),
+    FIND_PRODUCT_CATEGORY_ALL("/api/product/category/*"),
+    FIND_PRODUCT_SUPPLIER("/api/product/supplier/"),
+    FIND_PRODUCT_SUPPLIER_ALL("/api/product/supplier/*"),
 
     FIND_CATEGORY_ALL("/api/category"),
     FIND_CATEGORY_ONE("/api/category/one"),

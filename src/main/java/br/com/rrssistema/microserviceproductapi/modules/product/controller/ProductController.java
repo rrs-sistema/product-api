@@ -38,11 +38,6 @@ public class ProductController {
         return productService.findByAll();
     }
 
-    @GetMapping("/all")
-    public List<ProductResponse> getAll() {
-        return productService.findByAll();
-    }
-
     @GetMapping("/name/{name}")
     public List<ProductResponse> findByName(@PathVariable String name) {
         return productService.findByName(name);
