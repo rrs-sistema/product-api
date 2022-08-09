@@ -33,7 +33,13 @@ public class ProductController {
         return productService.delete(id);
     }
 
+    @GetMapping
     public List<ProductResponse> findAll() {
+        return productService.findByAll();
+    }
+
+    @GetMapping("{all")
+    public List<ProductResponse> getAll() {
         return productService.findByAll();
     }
 
@@ -44,6 +50,11 @@ public class ProductController {
 
     @GetMapping("{id}")
     public ProductResponse findById(@PathVariable Integer id) {
+        return productService.findByIdResponse(id);
+    }
+
+    @GetMapping("/one/{id}")
+    public ProductResponse findByOne(@PathVariable Integer id) {
         return productService.findByIdResponse(id);
     }
 

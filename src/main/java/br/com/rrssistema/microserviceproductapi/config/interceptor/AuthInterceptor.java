@@ -29,11 +29,11 @@ public class AuthInterceptor implements HandlerInterceptor {
         if (isOptions(request)) {
             return true;
         }
+        if (isPublicEndpoint(request)) {
+            return true;
+        }
         if (isEmpty(request.getHeader(TRANSACTION_ID))) {
             throw new ValidationException("The transactionId header is required.");
-        }
-        if (isPublicEndPoints(request)) {
-            return true;
         }
         var authorization = request.getHeader(AUTHORIZATION);
         jwtService.validateAuthorization(authorization);
@@ -41,10 +41,10 @@ public class AuthInterceptor implements HandlerInterceptor {
         return true;
     }
 
-    private boolean isPublicEndPoints(HttpServletRequest request) {
+    private boolean isPublicEndpoint(HttpServletRequest request) {
         return Arrays.stream(PublicEndPoints.values())
             .anyMatch(publicEndPoint ->
-                    request.getRequestURI().equals(publicEndPoint.getPublicEndPoint()));
+                request.getRequestURI().equals(publicEndPoint.getPublicEndPoint()));
     }
 
     private boolean isOptions(HttpServletRequest request) {
